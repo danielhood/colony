@@ -1,7 +1,10 @@
 set(EXECUTABLE_OUTPUT_PATH ..)
 
-add_executable (colony main.cpp)
+file(GLOB colony_SRC "map/*.cpp" "map/*.h")
+add_executable (colony main.cpp ${colony_SRC})
+include_directories(.)
 
-add_executable (runtests runtests.cpp)
+file(GLOB test_SRC "test/*.cpp")
+add_executable (runtests runtests.cpp ${test_SRC})
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 target_link_libraries (runtests LINK_PUBLIC gtest)

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace {
+namespace colony_test {
 
 class TestTest : public ::testing::Test {
 protected:
