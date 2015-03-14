@@ -5,6 +5,6 @@ add_executable (colony main.cpp ${colony_SRC})
 include_directories(.)
 
 file(GLOB test_SRC "test/*.cpp")
-add_executable (runtests runtests.cpp ${test_SRC})
+add_executable (runtests runtests.cpp ${test_SRC} ${colony_SRC})
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 target_link_libraries (runtests LINK_PUBLIC gtest)

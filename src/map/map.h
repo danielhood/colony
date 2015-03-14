@@ -1,6 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
+
+#include "map/tile.h"
 
 using namespace std;
 
@@ -18,15 +21,21 @@ class Map {
 		virtual ~Map(){}	
 		
 	public:
-		static Map getMap() {
-			Map newMap = {};
-			return newMap;	
+		static Map getMap();
+		static constexpr int getMaxTiles() {
+			return MaxTiles;
 		}
 
 		int numTiles() {
-			return numTiles_;
+			return mapTiles_.size();
 		}
 
+		const Tile& getCenterTile();
+
 	protected:
+		static const int MaxTiles = 7;
+		
 		int numTiles_ = 0;
+		void generateTiles();
+		vector<Tile> mapTiles_ = {};
 };
