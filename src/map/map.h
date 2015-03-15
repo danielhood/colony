@@ -32,10 +32,16 @@ class Map {
 
 		Tile& getCenterTile();
 
+
+
 	protected:
 		static const int MaxTiles = 7;
 		
 		int numTiles_ = 0;
+
 		void generateTiles();
+		void linkFirstRing();
+		void linkRings(Tile& startTile);
+
 		vector<Tile> mapTiles_ = {};
 };

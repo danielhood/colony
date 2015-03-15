@@ -10,18 +10,38 @@ Map Map::getMap() {
 }
 
 void Map::generateTiles() {
+	// Generate all tiles for the map
 	for (int i=0; i<MaxTiles; ++i) {		
 		mapTiles_.emplace_back();
 	}
 
-	mapTiles_[0].addLink(mapTiles_[1]);
-	mapTiles_[0].addLink(mapTiles_[2]);
-	mapTiles_[0].addLink(mapTiles_[3]);
-	mapTiles_[0].addLink(mapTiles_[4]);
-	mapTiles_[0].addLink(mapTiles_[5]);
-	mapTiles_[0].addLink(mapTiles_[6]);
+	// Add links for center and first ring
+	linkFirstRing();
 
-	mapTiles_[0].getLink(0).setId(1);
+	// Link rings starting from Tile(1,0)
+	linkRings(mapTiles_[1]);
+}
+
+void Map::linkFirstRing() {
+	for (int i=0; i<6; ++i) {
+		// Link (0,0) to ring 1
+		getCenterTile().addLink(mapTiles_[i+1]);
+
+		// Set backlink to center tile
+		mapTiles_[i+1].addLink(mapTiles_[0]);
+
+		// Set tile coordinates (ring, node)
+		mapTiles_[i+1].setCoord(1, i);
+	}
+
+	// set coord of centerTile to (0,0)
+	getCenterTile().setCoord(0, 0);
+}
+
+void Map::linkRings(Tile& startTile) {
+	// TODO: spiral outwards building links for remaining map
+	// TODO: currently we are not peserving expclit link indexes for specific 'directions'
+	// TODO: need to figure out how we are going to termintate the outbond links for the last ring 
 }
 
 Tile& Map::getCenterTile()

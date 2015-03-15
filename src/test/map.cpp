@@ -23,25 +23,38 @@ namespace colony_test_map {
 		EXPECT_EQ(6, map.getCenterTile().numLinks());
 	}
 	
-	TEST_F(TestMap, InitalMap_CenterTileFirstLink_HasId1) {
+	TEST_F(TestMap, InitalMap_CenterTileFirstLink_HasCoord_1_0) {
 		Map map = Map::getMap();
 		Tile& tile = map.getCenterTile().getLink(0);
-		EXPECT_EQ(1, tile.getId());
+		EXPECT_EQ(1, tile.getRing());
+		EXPECT_EQ(0, tile.getPos());
 	}
 
-	TEST_F(TestMap, InitalMap_CenterTileFirstLink_CanUpdateId) {
-		Map map = Map::getMap();
-		Tile& tile = map.getCenterTile().getLink(0);
-		int origId = tile.getId();
-		tile.setId(origId+1);
-		EXPECT_EQ(origId+1, map.getCenterTile().getLink(0).getId());
-	}
-
-	TEST_F(TestMap, InitalMap_CenterTile_CanUpdateId) {
+	TEST_F(TestMap, InitalMap_CenterTile_CannotUpdateCoord) {
 		Map map = Map::getMap();
 		Tile& tile = map.getCenterTile();
-		int origId = tile.getId();
-		tile.setId(origId+1);
-		EXPECT_EQ(origId+1, map.getCenterTile().getId());
+
+		ASSERT_ANY_THROW(tile.setCoord(9, 100));
+	}
+	
+	TEST_F(TestMap, InitalMap_CenterTile_CannotAddNewLink) {
+		Map map = Map::getMap();
+		Tile& tile = map.getCenterTile();
+
+		ASSERT_ANY_THROW(tile.addLink(tile));
+	}
+
+	TEST_F(TestMap, InitalMap_CenterTileAndFirstRingTile_ValidReverseLink) {
+		Map map = Map::getMap();
+		Tile& centerTile = map.getCenterTile();
+
+		// Check that a back link exists to cetner tile on all first ring tiles
+		for (int i = 0; i<6; ++i) {	
+			bool linkFound = false;
+			for (int j = 0; j<centerTile.getLink(i).numLinks(); j++) {
+				if (true == (linkFound = (&centerTile == &centerTile.getLink(i).getLink(j)))) break;
+			}
+			EXPECT_EQ(true, linkFound); 
+		}
 	}
 }
