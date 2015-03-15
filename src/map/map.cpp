@@ -14,19 +14,17 @@ void Map::generateTiles() {
 		mapTiles_.emplace_back();
 	}
 
-	mapTiles_[0].Links.push_back(ref<Tile>(mapTiles_[1]));
-	mapTiles_[0].Links.push_back(ref<Tile>(mapTiles_[2]));
-	mapTiles_[0].Links.push_back(ref<Tile>(mapTiles_[3]));
-	mapTiles_[0].Links.push_back(ref<Tile>(mapTiles_[4]));
-	mapTiles_[0].Links.push_back(ref<Tile>(mapTiles_[5]));
-	mapTiles_[0].Links.push_back(ref<Tile>(mapTiles_[6]));
+	mapTiles_[0].addLink(mapTiles_[1]);
+	mapTiles_[0].addLink(mapTiles_[2]);
+	mapTiles_[0].addLink(mapTiles_[3]);
+	mapTiles_[0].addLink(mapTiles_[4]);
+	mapTiles_[0].addLink(mapTiles_[5]);
+	mapTiles_[0].addLink(mapTiles_[6]);
 
-	Tile& tile = mapTiles_[0].Links[0];
-	tile.setId(1);
-	//cout << tile.getId() << endl;
+	mapTiles_[0].getLink(0).setId(1);
 }
 
-const Tile& Map::getCenterTile()
+Tile& Map::getCenterTile()
 {
 	return mapTiles_[0];
 }

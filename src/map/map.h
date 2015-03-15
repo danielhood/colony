@@ -30,7 +30,7 @@ class Map {
 			return mapTiles_.size();
 		}
 
-		const Tile& getCenterTile();
+		Tile& getCenterTile();
 
 	protected:
 		static const int MaxTiles = 7;
