@@ -30,20 +30,6 @@ namespace colony_test_map {
 		EXPECT_EQ(0, tile.getPos());
 	}
 
-	TEST_F(TestMap, InitalMap_CenterTile_CannotUpdateCoord) {
-		Map map = Map::getMap();
-		Tile& tile = map.getCenterTile();
-
-		ASSERT_ANY_THROW(tile.setCoord(9, 100));
-	}
-	
-	TEST_F(TestMap, InitalMap_CenterTile_CannotAddNewLink) {
-		Map map = Map::getMap();
-		Tile& tile = map.getCenterTile();
-
-		ASSERT_ANY_THROW(tile.addLink(tile));
-	}
-
 	TEST_F(TestMap, InitalMap_CenterTileAndFirstRingTile_ValidReverseLink) {
 		Map map = Map::getMap();
 		Tile& centerTile = map.getCenterTile();
