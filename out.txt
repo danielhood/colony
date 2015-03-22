@@ -1,0 +1,231 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/dhood/colony/build
+[ 10%] Built target gtest
+[ 20%] Built target gtest_main
+Scanning dependencies of target colony
+[ 30%] Building CXX object src/CMakeFiles/colony.dir/map/map.cpp.o
+/home/dhood/colony/src/map/map.cpp: In member function ‘void Map::linkRings(Tile&)’:
+/home/dhood/colony/src/map/map.cpp:77:6: error: no match for ‘operator+’ (operand type is ‘__gnu_cxx::__normal_iterator<Tile*, std::vector<Tile> >’)
+    +++innerTileItr;
+      ^
+/home/dhood/colony/src/map/map.cpp:77:6: note: candidates are:
+In file included from /usr/include/c++/4.9.2/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9.2/memory:62,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/stl_iterator.h:781:7: note: __gnu_cxx::__normal_iterator<_Iterator, _Container> __gnu_cxx::__normal_iterator<_Iterator, _Container>::operator+(__gnu_cxx::__normal_iterator<_Iterator, _Container>::difference_type) const [with _Iterator = Tile*; _Container = std::vector<Tile>; __gnu_cxx::__normal_iterator<_Iterator, _Container>::difference_type = long int]
+       operator+(difference_type __n) const _GLIBCXX_NOEXCEPT
+       ^
+/usr/include/c++/4.9.2/bits/stl_iterator.h:781:7: note:   candidate expects 1 argument, 0 provided
+/usr/include/c++/4.9.2/bits/stl_iterator.h:334:5: note: template<class _Iterator> std::reverse_iterator<_Iterator> std::operator+(typename std::reverse_iterator<_Iterator>::difference_type, const std::reverse_iterator<_Iterator>&)
+     operator+(typename reverse_iterator<_Iterator>::difference_type __n,
+     ^
+/usr/include/c++/4.9.2/bits/stl_iterator.h:334:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   candidate expects 2 arguments, 1 provided
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9.2/memory:62,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/stl_iterator.h:1135:5: note: template<class _Iterator> std::move_iterator<_Iterator> std::operator+(typename std::move_iterator<_Iterator>::difference_type, const std::move_iterator<_Iterator>&)
+     operator+(typename move_iterator<_Iterator>::difference_type __n,
+     ^
+/usr/include/c++/4.9.2/bits/stl_iterator.h:1135:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   candidate expects 2 arguments, 1 provided
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:52:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.h:2384:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const std::basic_string<_CharT, _Traits, _Alloc>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.h:2384:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   ‘__gnu_cxx::__normal_iterator<Tile*, std::vector<Tile> >’ is not derived from ‘const std::basic_string<_CharT, _Traits, _Alloc>’
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:53:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.tcc:692:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const _CharT*, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator+(const _CharT* __lhs,
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.tcc:692:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   mismatched types ‘const _CharT*’ and ‘__gnu_cxx::__normal_iterator<Tile*, std::vector<Tile> >’
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:53:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.tcc:708:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(_CharT, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator+(_CharT __lhs, const basic_string<_CharT, _Traits, _Alloc>& __rhs)
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.tcc:708:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   candidate expects 2 arguments, 1 provided
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:52:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.h:2421:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const std::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.h:2421:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   ‘__gnu_cxx::__normal_iterator<Tile*, std::vector<Tile> >’ is not derived from ‘const std::basic_string<_CharT, _Traits, _Alloc>’
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:52:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.h:2437:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const std::basic_string<_CharT, _Traits, _Alloc>&, _CharT)
+     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs, _CharT __rhs)
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.h:2437:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   ‘__gnu_cxx::__normal_iterator<Tile*, std::vector<Tile> >’ is not derived from ‘const std::basic_string<_CharT, _Traits, _Alloc>’
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:52:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.h:2449:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(std::basic_string<_CharT, _Traits, _Alloc>&&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.h:2449:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   ‘__gnu_cxx::__normal_iterator<Tile*, std::vector<Tile> >’ is not derived from ‘std::basic_string<_CharT, _Traits, _Alloc>’
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:52:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.h:2455:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const std::basic_string<_CharT, _Traits, _Alloc>&, std::basic_string<_CharT, _Traits, _Alloc>&&)
+     operator+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.h:2455:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   ‘__gnu_cxx::__normal_iterator<Tile*, std::vector<Tile> >’ is not derived from ‘const std::basic_string<_CharT, _Traits, _Alloc>’
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:52:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.h:2461:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(std::basic_string<_CharT, _Traits, _Alloc>&&, std::basic_string<_CharT, _Traits, _Alloc>&&)
+     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.h:2461:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   ‘__gnu_cxx::__normal_iterator<Tile*, std::vector<Tile> >’ is not derived from ‘std::basic_string<_CharT, _Traits, _Alloc>’
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:52:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.h:2473:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(const _CharT*, std::basic_string<_CharT, _Traits, _Alloc>&&)
+     operator+(const _CharT* __lhs,
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.h:2473:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   mismatched types ‘const _CharT*’ and ‘__gnu_cxx::__normal_iterator<Tile*, std::vector<Tile> >’
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:52:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.h:2479:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(_CharT, std::basic_string<_CharT, _Traits, _Alloc>&&)
+     operator+(_CharT __lhs,
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.h:2479:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   candidate expects 2 arguments, 1 provided
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:52:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.h:2485:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(std::basic_string<_CharT, _Traits, _Alloc>&&, const _CharT*)
+     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.h:2485:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   ‘__gnu_cxx::__normal_iterator<Tile*, std::vector<Tile> >’ is not derived from ‘std::basic_string<_CharT, _Traits, _Alloc>’
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/string:52:0,
+                 from /usr/include/c++/4.9.2/stdexcept:39,
+                 from /usr/include/c++/4.9.2/array:38,
+                 from /usr/include/c++/4.9.2/tuple:39,
+                 from /usr/include/c++/4.9.2/functional:55,
+                 from /usr/include/c++/4.9.2/memory:79,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/basic_string.h:2491:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_string<_CharT, _Traits, _Alloc> std::operator+(std::basic_string<_CharT, _Traits, _Alloc>&&, _CharT)
+     operator+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+     ^
+/usr/include/c++/4.9.2/bits/basic_string.h:2491:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   ‘__gnu_cxx::__normal_iterator<Tile*, std::vector<Tile> >’ is not derived from ‘std::basic_string<_CharT, _Traits, _Alloc>’
+    +++innerTileItr;
+       ^
+In file included from /usr/include/c++/4.9.2/vector:65:0,
+                 from /home/dhood/colony/src/./map/map.h:4,
+                 from /home/dhood/colony/src/map/map.cpp:2:
+/usr/include/c++/4.9.2/bits/stl_bvector.h:297:3: note: std::_Bit_iterator std::operator+(std::ptrdiff_t, const std::_Bit_iterator&)
+   operator+(ptrdiff_t __n, const _Bit_iterator& __x)
+   ^
+/usr/include/c++/4.9.2/bits/stl_bvector.h:297:3: note:   candidate expects 2 arguments, 1 provided
+/usr/include/c++/4.9.2/bits/stl_bvector.h:387:3: note: std::_Bit_const_iterator std::operator+(std::ptrdiff_t, const std::_Bit_const_iterator&)
+   operator+(ptrdiff_t __n, const _Bit_const_iterator& __x)
+   ^
+/usr/include/c++/4.9.2/bits/stl_bvector.h:387:3: note:   candidate expects 2 arguments, 1 provided
+In file included from /usr/include/c++/4.9.2/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/4.9.2/memory:62,
+                 from /home/dhood/colony/src/map/map.cpp:1:
+/usr/include/c++/4.9.2/bits/stl_iterator.h:918:5: note: template<class _Iterator, class _Container> __gnu_cxx::__normal_iterator<_Iterator, _Container> __gnu_cxx::operator+(typename __gnu_cxx::__normal_iterator<_Iterator, _Container>::difference_type, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)
+     operator+(typename __normal_iterator<_Iterator, _Container>::difference_type
+     ^
+/usr/include/c++/4.9.2/bits/stl_iterator.h:918:5: note:   template argument deduction/substitution failed:
+/home/dhood/colony/src/map/map.cpp:77:7: note:   candidate expects 2 arguments, 1 provided
+    +++innerTileItr;
+       ^
+src/CMakeFiles/colony.dir/build.make:100: recipe for target 'src/CMakeFiles/colony.dir/map/map.cpp.o' failed
+make[2]: *** [src/CMakeFiles/colony.dir/map/map.cpp.o] Error 1
+CMakeFiles/Makefile2:164: recipe for target 'src/CMakeFiles/colony.dir/all' failed
+make[1]: *** [src/CMakeFiles/colony.dir/all] Error 2
+Makefile:76: recipe for target 'all' failed
+make: *** [all] Error 2
