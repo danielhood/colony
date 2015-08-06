@@ -43,36 +43,47 @@ void Map::linkRings(Tile& startTile) {
 	// TODO: currently we are not peserving expclit link indexes for specific 'directions'	
 	// TODO: need to figure out how we are going to termintate the outbond links for the last ring 
 	//
-	
+
+	int currOuterRing = 2;
+	int currOuterRingSize = ringSize(currOuterRing);
 
 	auto innerTileItr = getRingStart(startTile);
 	auto outerTileItr = getRingEnd(startTile)+1;
 
 	auto innerRingStart = getRingStart(startTile); 
 
-	while (outerTileItr->getRing() <  MaxRings) {
-
-		
-
+	// Set coordinates for current outer ring
+	for (int i = 0; i < currOuterRingSize; ++i) {
+		(outerTileItr+i)->setCoord(currOuterRing, i);
+	}
+	
+	while (outerTileItr != mapTiles_.end()) {
 		if (isKeyNode(*innerTileItr)) {
-				
 			innerTileItr->addLink(*outerTileItr);
-			outerTileItr->addLink(*(outerTileItr + 1));
-			innerTileItr->addLink(*++outerTileItr);
-			innerTileItr->addLink(*(innerTileItr + 1));
-			++innerTileItr;
-		} else {
-			innerTileItr->addLink(*outerTileItr);
-			outerTileItr->addLink(*(outerTileItr + 1));
-			innerTileItr->addLink(*++outerTileItr);
-			innerTileItr->addLink(*(innerTileItr + 1));
-			++innerTileItr;
+			outerTileItr++;
+		}
+		
+		innerTileItr->addLink(*outerTileItr);
 
-			if (isKeyNode(*innerTileItr)) {
-				innerTileItr->addLink(*outerTileItr);
-				outerTileItr->addLink(*(outerTileItr + 1));
-				++outerTileItr;
+		if ((innerTileItr + 1)->getRing() == outerTileItr->getRing()) {
+			// We are about to jump up a ring
+			innerTileItr->addLink(*innerRingStart);
+			innerRingStart->addLink(*outerTileItr);
+			innerRingStart = ++innerTileItr;
+			++outerTileItr;
+			++currOuterRing;
+			currOuterRingSize = ringSize(currOuterRing);
+			if (outerTileItr != mapTiles_.end()) {
+				// Set coordinates for current outer ring
+				for (int i = 0; i < currOuterRingSize; ++i) {
+					(outerTileItr+i)->setCoord(currOuterRing, i);
+				}
 			}
+		} else {
+			innerTileItr->addLink(*(innerTileItr + 1));
+			++innerTileItr;
+			innerTileItr->addLink(*outerTileItr);
+			++outerTileItr;
 		}
 	}
 }

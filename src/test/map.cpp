@@ -12,7 +12,6 @@ namespace colony_test_map {
 			virtual void TearDown() {}
 	};
 
-
 	TEST_F(TestMap, InitalMap_NumTiles_HasMaxTiles) {
 		Map map = Map::getMap();
 		EXPECT_EQ(Map::getMaxTiles(), map.numTiles());
