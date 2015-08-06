@@ -47,7 +47,7 @@ class Map {
 
 		void generateTiles();
 		void linkFirstRing();
-		void linkRings(Tile& startTile);
+		void linkRings();
 
 		vector<Tile> mapTiles_ = {};
 };

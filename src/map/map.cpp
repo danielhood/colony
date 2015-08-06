@@ -4,64 +4,64 @@
 using namespace std;
 
 Map Map::getMap() {
-			Map newMap = {};
-			newMap.generateTiles();
-			return newMap;	
+	Map newMap = {};
+	newMap.generateTiles();
+	return newMap;	
 }
 
 void Map::generateTiles() {
 	// Generate all tiles for the map
-	for (int i=0; i<getMaxTiles(); ++i) {		
+	int currRing = 0;
+	int currPos = 0;
+	int lastIdx = totalNodesForRing(currRing) - 1;
+
+	for (int i = 0; i < getMaxTiles(); ++i) {
+		// Create tile
 		mapTiles_.emplace_back();
+
+		// Assign coorinates
+		mapTiles_[i].setCoord(currRing, currPos++);
+		if (i == lastIdx) {
+			lastIdx = totalNodesForRing(++currRing) - 1;
+			currPos = 0;
+		}
 	}
 
-	// Add links for center and first ring
-	linkFirstRing();
-
-	// Link rings starting from Tile(1,0)
-	linkRings(mapTiles_[1]);
+	// Generate links between all nodes
+	linkRings();
 }
 
 void Map::linkFirstRing() {
-	for (int i=0; i<6; ++i) {
+	for (int i = 0; i < 6; ++i) {
 		// Link (0,0) to ring 1
 		getCenterTile().addLink(mapTiles_[i+1]);
-
-		// Set backlink to center tile
-		//mapTiles_[i+1].addLink(mapTiles_[0]);
-
-		// Set tile coordinates (ring, node)
-		mapTiles_[i+1].setCoord(1, i);
 	}
-
-	// set coord of centerTile to (0,0)
-	getCenterTile().setCoord(0, 0);
 }
 
-void Map::linkRings(Tile& startTile) {
-	// Build up coordinates and links for rings 1 to MaxRings 
+void Map::linkRings() {
+	// Build up coordinates and links for rings 0 to MaxRings 
 	// Nodes on the outer ring will have less than 6 links
 	// This ensures that all links are traverable
 
-	int currOuterRing = 2;
+	linkFirstRing();
+
+	Tile startTile = mapTiles_[1];
+
+	int currOuterRing = startTile.getRing()+1;
 	int currOuterRingSize = ringSize(currOuterRing);
 
 	auto innerTileItr = getRingStart(startTile);
 	auto outerTileItr = getRingEnd(startTile)+1;
 	auto innerRingStart = innerTileItr; 
 
-	// Set coordinates for current outer ring
-	for (int i = 0; i < currOuterRingSize; ++i) {
-		(outerTileItr+i)->setCoord(currOuterRing, i);
-	}
-	
 	while (outerTileItr != mapTiles_.end()) {
+		// Handle special case to add links between key nodes
 		if (isKeyNode(*innerTileItr)) {
 			if (!isKeyNode(*outerTileItr)) {
 				throw runtime_error( "outer tile not keynode when linked from inner keynode" );
 			}
 			innerTileItr->addLink(*outerTileItr);
-			outerTileItr++;
+			++outerTileItr;
 		}
 		
 		innerTileItr->addLink(*outerTileItr);
@@ -74,15 +74,8 @@ void Map::linkRings(Tile& startTile) {
 			++outerTileItr;
 			++currOuterRing;
 			currOuterRingSize = ringSize(currOuterRing);
-			if (outerTileItr != mapTiles_.end()) {
-				// Set coordinates for current outer ring
-				// TODO: try to simplify the repeated code here
-				for (int i = 0; i < currOuterRingSize; ++i) {
-					(outerTileItr+i)->setCoord(currOuterRing, i);
-				}
-			}
 		} else {
-			innerTileItr->addLink(*(innerTileItr + 1));
+			innerTileItr->addLink(*(innerTileItr+1));
 			++innerTileItr;
 			innerTileItr->addLink(*outerTileItr);
 			++outerTileItr;
