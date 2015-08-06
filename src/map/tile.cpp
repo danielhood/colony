@@ -13,7 +13,7 @@ Tile& Tile::getLink(int index) {
 
 void Tile::addLink(Tile& tile) {	
 	if (links_.size() == 6 || tile.links_.size() == 6) { 
-		throw invalid_argument( "attepting to add more than 6 tile links" );
+		throw runtime_error( "attepting to add more than 6 tile links" );
 	}
 
 	links_.push_back(&tile);
@@ -22,7 +22,7 @@ void Tile::addLink(Tile& tile) {
 
 void Tile::setCoord (int ring, int pos) { 
 	if (coordInitialized_) {
-		throw invalid_argument( "attempted to reinitialize tile coordinate values");
+		throw runtime_error( "attempted to reinitialize tile coordinate values");
 	}
 
 	ring_ = ring; 

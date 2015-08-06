@@ -39,18 +39,16 @@ void Map::linkFirstRing() {
 }
 
 void Map::linkRings(Tile& startTile) {
-	// TODO: spiral outwards building links for remaining map
-	// TODO: currently we are not peserving expclit link indexes for specific 'directions'	
-	// TODO: need to figure out how we are going to termintate the outbond links for the last ring 
-	//
+	// Build up coordinates and links for rings 1 to MaxRings 
+	// Nodes on the outer ring will have less than 6 links
+	// This ensures that all links are traverable
 
 	int currOuterRing = 2;
 	int currOuterRingSize = ringSize(currOuterRing);
 
 	auto innerTileItr = getRingStart(startTile);
 	auto outerTileItr = getRingEnd(startTile)+1;
-
-	auto innerRingStart = getRingStart(startTile); 
+	auto innerRingStart = innerTileItr; 
 
 	// Set coordinates for current outer ring
 	for (int i = 0; i < currOuterRingSize; ++i) {
@@ -59,6 +57,9 @@ void Map::linkRings(Tile& startTile) {
 	
 	while (outerTileItr != mapTiles_.end()) {
 		if (isKeyNode(*innerTileItr)) {
+			if (!isKeyNode(*outerTileItr)) {
+				throw runtime_error( "outer tile not keynode when linked from inner keynode" );
+			}
 			innerTileItr->addLink(*outerTileItr);
 			outerTileItr++;
 		}
@@ -75,6 +76,7 @@ void Map::linkRings(Tile& startTile) {
 			currOuterRingSize = ringSize(currOuterRing);
 			if (outerTileItr != mapTiles_.end()) {
 				// Set coordinates for current outer ring
+				// TODO: try to simplify the repeated code here
 				for (int i = 0; i < currOuterRingSize; ++i) {
 					(outerTileItr+i)->setCoord(currOuterRing, i);
 				}

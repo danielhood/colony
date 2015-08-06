@@ -31,7 +31,7 @@ class Map {
 		Tile& getCenterTile();
 
 	protected:
-		static const int MaxRings = 1000;
+		static const int MaxRings = 100;
 		
 		static inline int ringSize(int ring) { return 6 * ring; }
 
