@@ -1,4 +1,5 @@
 #include <memory>
+#include <stdexcept>
 #include "map/map.h"
 
 using namespace std;
@@ -88,3 +89,20 @@ Tile& Map::getCenterTile()
 	return mapTiles_[0];
 }
 
+Tile& Map::getTile(int ring, int pos) {
+	if (ring >= MaxRings) {
+		throw invalid_argument ("ring exceeds MaxRings");
+	}
+
+	if (pos >= ringSize(ring)) {
+		throw invalid_argument ("pos exceeds size for given ring");
+	}
+
+	if (ring == 0) {
+		return getCenterTile();
+	}
+
+	int tileIdx = totalNodesForRing(ring-1) + pos;
+
+	return mapTiles_[tileIdx];
+}

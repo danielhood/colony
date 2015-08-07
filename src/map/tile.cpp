@@ -20,6 +20,16 @@ void Tile::addLink(Tile& tile) {
 	tile.links_.push_back(this);
 }
 
+bool Tile::isAdjacentTo(int ring, int pos) {
+	for (int i=0; i<links_.size(); ++i) {
+		if (links_[i]->getRing() == ring && links_[i]->getPos() == pos) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void Tile::setCoord (int ring, int pos) { 
 	if (coordInitialized_) {
 		throw runtime_error( "attempted to reinitialize tile coordinate values");

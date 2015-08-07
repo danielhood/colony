@@ -17,6 +17,20 @@ namespace colony_test_map {
 		EXPECT_EQ(Map::getMaxTiles(), map.numTiles());
 	}	
 
+	TEST_F(TestMap, InitialMap_SingleTile_HasCorrectLinks) {
+		Map map = Map::getMap();
+		Tile testTile = map.getTile(4, 0);
+
+		EXPECT_EQ(6, testTile.numLinks());
+
+		EXPECT_EQ(true, testTile.isAdjacentTo(5,0));
+		EXPECT_EQ(true, testTile.isAdjacentTo(5,1));
+		EXPECT_EQ(true, testTile.isAdjacentTo(5,29));
+		EXPECT_EQ(true, testTile.isAdjacentTo(4,1));
+		EXPECT_EQ(true, testTile.isAdjacentTo(4,23));
+		EXPECT_EQ(true, testTile.isAdjacentTo(3,0));
+	}	
+
 	TEST_F(TestMap, InitalMap_CenterTile_HasSixLinks) {
 		Map map = Map::getMap();
 		EXPECT_EQ(6, map.getCenterTile().numLinks());

@@ -7,14 +7,14 @@ using namespace std;
 
 class Tile {
 	public:
-		void setCoord (int ring, int pos);
-		int getRing () const { return ring_; }
-		int getPos () const { return pos_; }
+		void setCoord(int ring, int pos);
+		int getRing() const { return ring_; }
+		int getPos() const { return pos_; }
 		
 		Tile& getLink(int index);
 		int numLinks() { return links_.size(); }
 		void addLink(Tile& tile);
-
+		bool isAdjacentTo(int ring, int pos);
 	protected:
 		int ring_ = 0;
 		int pos_ = 0;

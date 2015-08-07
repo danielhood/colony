@@ -13,7 +13,7 @@ class Map {
 
 	public:
 		Map(Map&&) =default;
-    Map& operator=(Map&&) =default;
+		Map& operator=(Map&&) =default;
 
 		Map(Map&) =delete;
 		Map& operator=(const Map&) =delete;
@@ -29,6 +29,7 @@ class Map {
 		}
 
 		Tile& getCenterTile();
+		Tile& getTile(int ring, int pos);
 
 	protected:
 		static const int MaxRings = 100;
