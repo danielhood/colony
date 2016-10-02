@@ -12,5 +12,3 @@ make
 ./runtests
 
 cd ..
-
-
