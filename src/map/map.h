@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 
-#include "map/tile.h"
+#include "tile.h"
 
 using namespace std;
 
@@ -25,7 +25,7 @@ class Map {
 		static int getMaxTiles() { return totalNodesForRing(MaxRings); }
 
 		int numTiles() {
-			return mapTiles_.size();
+			return (int) mapTiles_.size();
 		}
 
 		Tile& getCenterTile();

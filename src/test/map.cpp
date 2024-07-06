@@ -47,7 +47,7 @@ namespace colony_test_map {
 		Map map = Map::getMap();
 		Tile& centerTile = map.getCenterTile();
 
-		// Check that a back link exists to cetner tile on all first ring tiles
+		// Check that a back link exists to center tile on all first ring tiles
 		for (int i = 0; i<6; ++i) {	
 			bool linkFound = false;
 			for (int j = 0; j<centerTile.getLink(i).numLinks(); j++) {

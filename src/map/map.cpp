@@ -20,7 +20,7 @@ void Map::generateTiles() {
 		// Create tile
 		mapTiles_.emplace_back();
 
-		// Assign coorinates
+		// Assign coordinates
 		mapTiles_[i].setCoord(currRing, currPos++);
 		if (i == lastIdx) {
 			lastIdx = totalNodesForRing(++currRing) - 1;

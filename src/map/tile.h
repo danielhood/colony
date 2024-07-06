@@ -12,7 +12,7 @@ class Tile {
 		int getPos() const { return pos_; }
 		
 		Tile& getLink(int index);
-		int numLinks() { return links_.size(); }
+		int numLinks() { return (int)links_.size(); }
 		void addLink(Tile& tile);
 		bool isAdjacentTo(int ring, int pos);
 	protected:
