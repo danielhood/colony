@@ -39,7 +39,7 @@ void Map::generateTilesByTraversal() {
 		for (Tile* t : tilesToTraverse) {
 			// Check each link and populate if needed
 			if (!t->links_[0]) {
-				Tile* tile0 = &mapTiles_.emplace_back();
+				Tile* tile0 = &mapTiles_.emplace_back(); // TODO: this will update the storage of the vector objects, invalidating any pointers to the original storage. Use unique/shared pointers.
 				newTiles.push_back(tile0);
 
 				tile0->setCoords(t->getX(), t->getY() + 2);
