@@ -32,7 +32,7 @@ class Map {
 		Tile& getTile(int ring, int pos);
 
 	protected:
-		static const int MaxRings = 100;
+		static const int MaxRings = 3;
 		
 		static inline int ringSize(int ring) { return 6 * ring; }
 
@@ -46,7 +46,9 @@ class Map {
 
 		int numTiles_ = 0;
 
-		void generateTiles();
+		void generateTilesByRings();
+		void generateTilesByTraversal();
+
 		void linkFirstRing();
 		void linkRings();
 

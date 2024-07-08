@@ -13,9 +13,9 @@ namespace colony_test_tile {
 	TEST_F(TestTile, Tile_CoordinateSet_CannotUpdateCoord) {
 		Tile tile = {};
 	
-		tile.setCoord(0,0);
+		tile.setRingPos(0,0);
 
-		ASSERT_ANY_THROW(tile.setCoord(9, 100));
+		ASSERT_ANY_THROW(tile.setRingPos(9, 100));
 	}
 	
 	TEST_F(TestTile, Tile_SixLinksSet_CannotAddNewLink) {

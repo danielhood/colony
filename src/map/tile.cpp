@@ -3,26 +3,35 @@
 
 using namespace std;
 
+Tile::Tile() {
+	links_[0] = NULL;
+	links_[1] = NULL;
+	links_[2] = NULL;
+	links_[3] = NULL;
+	links_[4] = NULL;
+	links_[5] = NULL;
+}
+
 Tile& Tile::getLink(int index) {
-	if (index >= links_.size()) {
+	if (index >= dynLinks_.size()) {
 		throw invalid_argument( "index references invalid link" );
 	}
 
-	return *links_[index];
+	return *dynLinks_[index];
 }
 
 void Tile::addLink(Tile& tile) {	
-	if (links_.size() == 6 || tile.links_.size() == 6) { 
+	if (dynLinks_.size() == 6 || tile.dynLinks_.size() == 6) {
 		throw runtime_error( "attepting to add more than 6 tile links" );
 	}
 
-	links_.push_back(&tile);
-	tile.links_.push_back(this);
+	dynLinks_.push_back(&tile);
+	tile.dynLinks_.push_back(this);
 }
 
 bool Tile::isAdjacentTo(int ring, int pos) {
-	for (int i=0; i<links_.size(); ++i) {
-		if (links_[i]->getRing() == ring && links_[i]->getPos() == pos) {
+	for (int i=0; i< dynLinks_.size(); ++i) {
+		if (dynLinks_[i]->getRing() == ring && dynLinks_[i]->getPos() == pos) {
 			return true;
 		}
 	}
@@ -30,13 +39,24 @@ bool Tile::isAdjacentTo(int ring, int pos) {
 	return false;
 }
 
-void Tile::setCoord (int ring, int pos) { 
+void Tile::setRingPos(int ring, int pos) {
 	if (coordInitialized_) {
-		throw runtime_error( "attempted to reinitialize tile coordinate values");
+		throw runtime_error( "attempted to reinitialize tile coordinate values (ring,pos)");
 	}
 
 	ring_ = ring; 
 	pos_ = pos; 
+	coordInitialized_ = true;
+}
+
+void Tile::setCoords(int x, int y) {
+	if (coordInitialized_) {
+		throw runtime_error("attempted to reinitialize tile coordinate values (x,y)");
+	}
+
+	x_ = x;
+	y_ = y;
+	
 	coordInitialized_ = true;
 }
 
