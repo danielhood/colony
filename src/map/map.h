@@ -29,28 +29,25 @@ class Map {
 		}
 
 		Tile& getCenterTile();
-		Tile& getTile(int ring, int pos);
+		Tile& getTile(int x, int y);
 
 	protected:
-		static const int MaxRings = 3;
+		static const int MaxRings = 100;
 		
-		static inline int ringSize(int ring) { return 6 * ring; }
+		static inline int ringSize(int ring) { 
+			// Ring 0 is the center tile
+			if (ring == 0) return 1;
+
+			return 6 * ring; 
+		}
 
 		static inline int totalNodesForRing(int ring) { return 1 + 3 * ring * (ring + 1); }
 
-		static inline bool isKeyNode(int ring, int pos) { return 0 == pos % ring; }
-		static inline bool isKeyNode(Tile& tile) { return isKeyNode(tile.getRing(), tile.getPos()); }
-
-		inline auto getRingStart(Tile& tile) { return mapTiles_.begin() + totalNodesForRing(tile.getRing() - 1); }
-		inline auto getRingEnd(Tile& tile) { return mapTiles_.begin() + totalNodesForRing(tile.getRing()) - 1; }
+		vector<shared_ptr<Tile>> mapTiles_ = {};
 
 		int numTiles_ = 0;
 
-		void generateTilesByRings();
-		void generateTilesByTraversal();
-
-		void linkFirstRing();
-		void linkRings();
-
-		vector<Tile> mapTiles_ = {};
+		void generateTiles(int numRings);
+		shared_ptr<Tile> generateTile(vector<shared_ptr<Tile>>& newTiles);
+		void generateImmediateNeighbours(shared_ptr<Tile> t, vector<shared_ptr<Tile>>& newTiles);
 };

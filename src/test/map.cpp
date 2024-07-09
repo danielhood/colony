@@ -19,28 +19,21 @@ namespace colony_test_map {
 
 	TEST_F(TestMap, InitialMap_SingleTile_HasCorrectLinks) {
 		Map map = Map::getMap();
-		Tile testTile = map.getTile(4, 0);
+		Tile testTile = map.getTile(2,4);
 
-		EXPECT_EQ(6, testTile.numLinks());
-
-		EXPECT_EQ(true, testTile.isAdjacentTo(5,0));
-		EXPECT_EQ(true, testTile.isAdjacentTo(5,1));
-		EXPECT_EQ(true, testTile.isAdjacentTo(5,29));
-		EXPECT_EQ(true, testTile.isAdjacentTo(4,1));
-		EXPECT_EQ(true, testTile.isAdjacentTo(4,23));
-		EXPECT_EQ(true, testTile.isAdjacentTo(3,0));
+		EXPECT_EQ(true, testTile.isAdjacentTo(2,6));
+		EXPECT_EQ(true, testTile.isAdjacentTo(3,5));
+		EXPECT_EQ(true, testTile.isAdjacentTo(3,3));
+		EXPECT_EQ(true, testTile.isAdjacentTo(2,2));
+		EXPECT_EQ(true, testTile.isAdjacentTo(1,3));
+		EXPECT_EQ(true, testTile.isAdjacentTo(1,5));
 	}	
 
-	TEST_F(TestMap, InitalMap_CenterTile_HasSixLinks) {
-		Map map = Map::getMap();
-		EXPECT_EQ(6, map.getCenterTile().numLinks());
-	}
-	
-	TEST_F(TestMap, InitalMap_CenterTileFirstLink_HasCoord_1_0) {
+	TEST_F(TestMap, InitalMap_CenterTileFirstLink_HasCoord_0_2) {
 		Map map = Map::getMap();
 		Tile& tile = map.getCenterTile().getLink(0);
-		EXPECT_EQ(1, tile.getRing());
-		EXPECT_EQ(0, tile.getPos());
+		EXPECT_EQ(0, tile.getX());
+		EXPECT_EQ(2, tile.getY());
 	}
 
 	TEST_F(TestMap, InitalMap_CenterTileAndFirstRingTile_ValidReverseLink) {
@@ -50,10 +43,21 @@ namespace colony_test_map {
 		// Check that a back link exists to center tile on all first ring tiles
 		for (int i = 0; i<6; ++i) {	
 			bool linkFound = false;
-			for (int j = 0; j<centerTile.getLink(i).numLinks(); j++) {
+			for (int j = 0; j<6; j++) {
 				if (true == (linkFound = (&centerTile == &centerTile.getLink(i).getLink(j)))) break;
 			}
 			EXPECT_EQ(true, linkFound); 
 		}
+	}
+
+	TEST_F(TestMap, InitialMap_TraverseBackToOriginalTile) {
+		Map map = Map::getMap();
+		Tile startTile = map.getTile(2, 4);
+
+		// Traverse around 6 tiles back to start tile
+		Tile endTile = startTile.getLink(0).getLink(1).getLink(2).getLink(3).getLink(4).getLink(5);
+
+		EXPECT_EQ(2, endTile.getX());
+		EXPECT_EQ(4, endTile.getY());
 	}
 }

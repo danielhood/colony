@@ -13,22 +13,8 @@ namespace colony_test_tile {
 	TEST_F(TestTile, Tile_CoordinateSet_CannotUpdateCoord) {
 		Tile tile = {};
 	
-		tile.setRingPos(0,0);
+		tile.setCoords(0,0);
 
-		ASSERT_ANY_THROW(tile.setRingPos(9, 100));
+		ASSERT_ANY_THROW(tile.setCoords(9, 100));
 	}
-	
-	TEST_F(TestTile, Tile_SixLinksSet_CannotAddNewLink) {
-		Tile tile = {};
-		Tile tile2 = {};
-
-		for (int i=0; i<6; ++i) {
-			tile.addLink(tile2);
-		}
-
-		ASSERT_ANY_THROW(tile.addLink(tile));
-	}
-
-
-
 }
